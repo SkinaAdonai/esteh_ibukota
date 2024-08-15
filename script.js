@@ -24,40 +24,48 @@ const itemPrices = {
     'Choco Banana Milky': 12000
 };
 
-
 document.getElementById('add-item').addEventListener('click', function () {
     const itemName = document.getElementById('item-name').value;
-    const itemPrice = itemPrices[itemName]; // Ambil harga dari daftar
+    const itemPrice = itemPrices[itemName];
     const itemQuantity = parseInt(document.getElementById('item-quantity').value);
 
     if (itemPrice !== undefined && itemQuantity > 0) {
-        addItemToTable(itemName, itemPrice, itemQuantity);
+        updateItemInTable(itemName, itemPrice, itemQuantity);
         updateTotal();
     } else {
         alert('Harap pilih barang dan masukkan jumlah yang benar.');
     }
 });
 
-function addItemToTable(name, price, quantity) {
+function updateItemInTable(name, price, quantity) {
     const tableBody = document.querySelector('#item-table tbody');
-    const row = document.createElement('tr');
+    let row = Array.from(tableBody.rows).find(row => row.cells[0].innerText === name);
 
-    row.innerHTML = `
-        <td>${name}</td>
-        <td>Rp ${price.toFixed(2)}</td>
-        <td>${quantity}</td>
-        <td>Rp ${(price * quantity).toFixed(2)}</td>
-        <td><button class="remove-item">Hapus</button></td>
-    `;
+    if (row) {
+        // Item sudah ada, perbarui jumlah dan total
+        const existingQuantity = parseInt(row.cells[2].innerText);
+        const newQuantity = existingQuantity + quantity;
+        row.cells[2].innerText = newQuantity;
+        row.cells[3].innerText = `Rp ${(price * newQuantity).toFixed(2)}`;
+    } else {
+        // Item belum ada, tambahkan baris baru
+        row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${name}</td>
+            <td>Rp ${price.toFixed(2)}</td>
+            <td>${quantity}</td>
+            <td>Rp ${(price * quantity).toFixed(2)}</td>
+            <td><button class="remove-item">Hapus</button></td>
+        `;
+        tableBody.appendChild(row);
 
-    tableBody.appendChild(row);
-
-    row.querySelector('.remove-item').addEventListener('click', function () {
-        if (confirm('Apakah Anda yakin ingin menghapus item ini?')) {
-            row.remove();
-            updateTotal();
-        }
-    });
+        row.querySelector('.remove-item').addEventListener('click', function () {
+            if (confirm('Apakah Anda yakin ingin menghapus item ini?')) {
+                row.remove();
+                updateTotal();
+            }
+        });
+    }
 }
 
 function updateTotal() {
@@ -69,6 +77,7 @@ function updateTotal() {
 
     document.getElementById('total-amount').innerText = `Rp ${total.toFixed(2)}`;
 }
+
 document.getElementById('checkout').addEventListener('click', function () {
     if (confirm('Apakah Anda yakin ingin membersihkan?')) {
         document.querySelector('#item-table tbody').innerHTML = '';
