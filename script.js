@@ -1,4 +1,3 @@
-// Daftar harga barang tetap
 const itemPrices = {
     'Original Tea': 3000,
     'Lychee Tea': 5000,
@@ -55,14 +54,28 @@ function updateItemInTable(name, price, quantity) {
             <td>Rp ${price.toFixed(2)}</td>
             <td>${quantity}</td>
             <td>Rp ${(price * quantity).toFixed(2)}</td>
-            <td><button class="remove-item">Hapus</button></td>
+            <td>
+            <button class="remove-item">-</button>
+            <button class="add-item">+</button>
+            </td>
         `;
         tableBody.appendChild(row);
 
+        row.querySelector('.add-item').addEventListener('click', function () {
+            updateItemInTable(name, price, 1);
+            updateTotal();
+        });
+
         row.querySelector('.remove-item').addEventListener('click', function () {
-            if (confirm('Apakah Anda yakin ingin menghapus item ini?')) {
-                row.remove();
+            const currentQuantity = parseInt(row.cells[2].innerText);
+            if (currentQuantity > 1) {
+                updateItemInTable(name, price, -1);
                 updateTotal();
+            } else if (currentQuantity === 1) {
+                if (confirm('Jumlah item 1, apakah Anda yakin ingin menghapus item ini?')) {
+                    row.remove();
+                    updateTotal();
+                }
             }
         });
     }
