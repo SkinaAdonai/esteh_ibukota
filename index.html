@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Es Teh Ibukota</title>
+    <title>Aplikasi Kasir UMKM</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -40,6 +40,7 @@
             <input type="number" id="item-quantity" placeholder="Masukkan jumlah barang">
         </div>
         <button id="add-item">Tambah Barang</button>
+
         <table id="item-table">
             <thead>
                 <tr>
@@ -50,11 +51,33 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
-            <tbody>
-            </tbody>
+            <tbody></tbody>
         </table>
+
+        <div class="form-group">
+            <label for="expense-description">Deskripsi Pengeluaran:</label>
+            <input type="text" id="expense-description" placeholder="Masukkan deskripsi pengeluaran">
+        </div>
+        <div class="form-group">
+            <label for="expense-amount">Jumlah Pengeluaran:</label>
+            <input type="number" id="expense-amount" placeholder="Masukkan jumlah pengeluaran">
+        </div>
+        <button id="add-expense">Tambah Pengeluaran</button>
+
+        <table id="expense-table">
+            <thead>
+                <tr>
+                    <th>Deskripsi</th>
+                    <th>Jumlah</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
         <div class="total">
-            <h2>Total Pendapatan Hari Ini: <span id="total-amount">Rp 0</span></h2>
+            <h2>Pendapatan Bersih Hari Ini: <span id="total-amount">Rp 0</span></h2>
+            <h3>Total Pengeluaran: <span id="total-expense">Rp 0</span></h3>
         </div>
         <button id="checkout">Clear</button>
     </div>
