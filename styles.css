@@ -39,15 +39,7 @@ h1 {
 }
 
 .form-group select, 
-.form-group input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.form-group select, 
+.form-group input[type="number"], 
 .form-group input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -83,7 +75,7 @@ table, th, td {
 
 th, td {
     padding: 10px;
-    text-align: center;
+    text-align: center; /* Menjadikan teks di dalam th dan td menjadi center */
 }
 
 th {
@@ -115,19 +107,9 @@ table {
     margin-bottom: 20px;
 }
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-}
-
 .total {
     margin-top: 20px;
 }
-
 
 /* Media Queries */
 @media (max-width: 768px) {
