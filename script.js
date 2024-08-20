@@ -62,18 +62,16 @@ function updateItemInTable(name, price, quantity) {
     }
 
     row.querySelector('.remove-item').addEventListener('click', function () {
-        if (quantity > 1) {
-            const currentQuantity = parseInt(row.cells[2].innerText);
+        const currentQuantity = parseInt(row.cells[2].innerText);
+        if (currentQuantity > 1) {
             const newQuantity = currentQuantity - 1;
             row.cells[2].innerText = newQuantity;
             row.cells[3].innerText = `Rp ${(price * newQuantity).toFixed(2)}`;
-            updateTotal();
-            saveDataToLocalStorage();
         } else {
             row.remove();
-            updateTotal();
-            saveDataToLocalStorage();
         }
+        updateTotal();
+        saveDataToLocalStorage();
     });
 
     row.querySelector('.add-item').addEventListener('click', function () {
@@ -129,9 +127,13 @@ document.getElementById('checkout').addEventListener('click', function () {
 
 function updateTotal() {
     let totalIncome = 0;
+    let totalCups = 0; // Initialize total cups
     document.querySelectorAll('#item-table tbody tr').forEach(function (row) {
         const totalPerItem = parseFloat(row.cells[3].innerText.replace('Rp ', ''));
         totalIncome += totalPerItem;
+
+        const quantity = parseInt(row.cells[2].innerText);
+        totalCups += quantity; // Add the quantity to the total cups
     });
 
     let totalExpense = 0;
@@ -143,6 +145,7 @@ function updateTotal() {
     const netIncome = totalIncome - totalExpense;
     document.getElementById('total-amount').innerText = `Rp ${netIncome.toFixed(2)}`;
     document.getElementById('total-expense').innerText = `Rp ${totalExpense.toFixed(2)}`;
+    document.getElementById('total-cups').innerText = totalCups; // Update total cups
 }
 
 function saveDataToLocalStorage() {
