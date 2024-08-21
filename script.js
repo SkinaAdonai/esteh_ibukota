@@ -103,7 +103,8 @@ function updateExpenseInTable(description, amount) {
     row.innerHTML = `
         <td>${description}</td>
         <td>Rp ${amount.toFixed(2)}</td>
-        <td><button class="remove-expense">Hapus</button></td>
+        <td><button class="remove-expense">Hapus</button>
+        
     `;
     tableBody.appendChild(row);
 
@@ -190,4 +191,17 @@ function loadDataFromLocalStorage() {
 
 window.onload = function() {
     loadDataFromLocalStorage();
+    displayCurrentDate();
 };
+
+// Fungsi untuk mendapatkan dan menampilkan tanggal saat ini
+function displayCurrentDate() {
+    const dateElement = document.getElementById('current-date');
+    const today = new Date();
+    
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const currentDate = today.toLocaleDateString('id-ID', options);
+
+    dateElement.innerText = currentDate;
+}
+
