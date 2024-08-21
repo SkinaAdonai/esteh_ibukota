@@ -1,86 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Kasir UMKM</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="form-group">
-            <label for="item-name">Menu</label>
-            <select id="item-name">
-                <option value="Original Tea">Original Tea</option>
-                <option value="Lychee Tea">Lychee Tea</option>
-                <option value="Lemon Tea">Lemon Tea</option>
-                <option value="Yakult Tea">Yakult Tea</option>
-                <option value="Moca Tea">Moca Tea</option>
-                <option value="Milo Tea">Milo Tea</option>
-                <option value="Original Milktea">Original Milktea</option>
-                <option value="Chocolate Milktea">Chocolate Milktea</option>
-                <option value="Beng Beng Milktea">Beng Beng Milktea</option>
-                <option value="Silverqueen Milktea">Silverqueen Milktea</option>
-                <option value="Choco Oreo Milktea">Choco Oreo Milktea</option>
-                <option value="Choco Cheese Milktea">Choco Cheese Milktea</option>
-                <option value="Greentea Milktea">Greentea Milktea</option>
-                <option value="Strawberry Milktea">Strawberry Milktea</option>
-                <option value="Redvelvet Milktea">Redvelvet Milktea</option>
-                <option value="Tiramisu Milktea">Tiramisu Milktea</option>
-                <option value="Thaitea Milktea">Thaitea Milktea</option>
-                <option value="Taro Milktea">Taro Milktea</option>
-                <option value="Mango Milky">Mango Milky</option>
-                <option value="Grape Milky">Grape Milky</option>
-                <option value="Blue Vanilla Milky">Blue Vanilla Milky</option>
-                <option value="Choco Banana Milky">Choco Banana Milky</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="item-quantity">Jumlah Cup:</label>
-            <input type="number" id="item-quantity" placeholder="Masukkan jumlah barang">
-        </div>
-        <button id="add-item">Tambah</button>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aplikasi Kasir UMKM</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-group">
+                <div class="date-display">
+                    <h2 style="text-align: center; font-family: 'Courier New', Courier, monospace;"><span id="current-date"></span></h2><br>
+                </div>                
+                <!-- <label for="item-name">Menu</label> -->
+                <select id="item-name">
+                    <option value="Original Tea">Original Tea</option>
+                    <option value="Lychee Tea">Lychee Tea</option>
+                    <option value="Lemon Tea">Lemon Tea</option>
+                    <option value="Yakult Tea">Yakult Tea</option>
+                    <option value="Moca Tea">Moca Tea</option>
+                    <option value="Milo Tea">Milo Tea</option>
+                    <option value="Original Milktea">Original Milktea</option>
+                    <option value="Chocolate Milktea">Chocolate Milktea</option>
+                    <option value="Beng Beng Milktea">Beng Beng Milktea</option>
+                    <option value="Silverqueen Milktea">Silverqueen Milktea</option>
+                    <option value="Choco Oreo Milktea">Choco Oreo Milktea</option>
+                    <option value="Choco Cheese Milktea">Choco Cheese Milktea</option>
+                    <option value="Greentea Milktea">Greentea Milktea</option>
+                    <option value="Strawberry Milktea">Strawberry Milktea</option>
+                    <option value="Redvelvet Milktea">Redvelvet Milktea</option>
+                    <option value="Tiramisu Milktea">Tiramisu Milktea</option>
+                    <option value="Thaitea Milktea">Thaitea Milktea</option>
+                    <option value="Taro Milktea">Taro Milktea</option>
+                    <option value="Mango Milky">Mango Milky</option>
+                    <option value="Grape Milky">Grape Milky</option>
+                    <option value="Blue Vanilla Milky">Blue Vanilla Milky</option>
+                    <option value="Choco Banana Milky">Choco Banana Milky</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="item-quantity">Jumlah Cup:</label>
+                <input type="number" id="item-quantity" placeholder="Masukkan jumlah barang">
+            </div>
+            <button id="add-item">Tambah</button>
 
-        <table id="item-table">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Harga</th>
-                    <th>Jumlah Cup (<span id="total-cups">0</span>)</th>
-                    <th>Total</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+            <table id="item-table">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Harga</th>
+                        <th>Jumlah Cup (<span id="total-cups">0</span>)</th>
+                        <th>Total</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
 
-        <div class="form-group">
-            <label for="expense-description">Deskripsi Pengeluaran:</label>
-            <input type="text" id="expense-description" placeholder="Masukkan deskripsi pengeluaran">
-        </div>
-        <div class="form-group">
-            <label for="expense-amount">Jumlah Pengeluaran:</label>
-            <input type="number" id="expense-amount" placeholder="Masukkan jumlah pengeluaran">
-        </div>
-        <button id="add-expense">Tambah Pengeluaran</button>
+            <div class="form-group">
+                <label for="expense-description">Deskripsi:</label>
+                <input type="text" id="expense-description" placeholder="Masukkan deskripsi pengeluaran">
+            </div>
+            <div class="form-group">
+                <label for="expense-amount">Harga:</label>
+                <input type="number" id="expense-amount" placeholder="Masukkan jumlah pengeluaran">
+            </div>
+            <button id="add-expense">Tambah Pengeluaran</button>
 
-        <table id="expense-table">
-            <thead>
-                <tr>
-                    <th>Deskripsi</th>
-                    <th>Jumlah</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+            <table id="expense-table">
+                <thead>
+                    <tr>
+                        <th>Deskripsi</th>
+                        <th>Harga</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
 
-        <div class="total">
-            <h2>Pendapatan Bersih Hari Ini: <span id="total-amount">Rp 0</span></h2>
-            <h2>Total Pengeluaran: <span id="total-expense">Rp 0</span></h2>
+            <div class="total" style="font-family: 'Courier New', Courier, monospace;">
+                <h2>Pendapatan Hari Ini: <span id="total-amount">Rp 0</span></h2>
+                <h2>Total Pengeluaran: <span id="total-expense">Rp 0</span></h2>
+            </div>
+            <button id="checkout">Clear</button>
         </div>
-        <button id="checkout">Clear</button>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+        <script src="script.js"></script>
+    </body>
+    </html>
