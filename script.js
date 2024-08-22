@@ -6,7 +6,7 @@ const itemPrices = {
     'Moca Tea': 2400,
     'Milo Tea': 3500,
     'Original Milktea': 4005,
-    'Chocolate Milktea': 2004,
+    'Chocolate Milktea': 2684,
     'Beng Beng Milktea': 2684,
     'Silverqueen Milktea': 2684,
     'Choco Oreo Milktea': 2684,
